@@ -1,0 +1,4 @@
+Message Identification,Creation Date and Time,Number of Transactions,Initiating Party,Payment Information ID,Amount,Currency,Creditor Name,Creditor IBAN
+123456789,2024-10-01T12:00:00,2,Sample Company,PMTINF-1,100.00,EUR,Recipient One,DE89370400440532013000
+Message Identification,Creation Date and Time,Number of Transactions,Initiating Party,Payment Information ID,Amount,Currency,Creditor Name,Creditor IBAN
+123456789,2024-10-01T12:00:00,2,Sample Company,PMTINF-1,200.00,EUR,Recipient Two,DE89370400440532013001

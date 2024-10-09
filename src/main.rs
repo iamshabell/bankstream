@@ -1,5 +1,9 @@
-use clap::{Arg, Command};
+use std::process;
 
+use clap::{Arg, Command};
+use parser::Pain001Parser;
+
+mod parser;
 fn main() -> anyhow::Result<()> {
     let matches = Command::new("Bank Stream")
         .version("0.0.1")
@@ -20,10 +24,21 @@ fn main() -> anyhow::Result<()> {
         )
         .get_matches();
 
-    let input = matches.get_one::<String>("input");
+    let buffer = matches.get_one::<String>("input").unwrap();
     let output = matches.get_one::<String>("output");
 
-    println!("Input: {:?}", input);
-    println!("Output: {:?}", output);
+    match Pain001Parser::new(buffer) {
+        Ok(parser) => {
+            if let Err(e) = parser.parse(output) {
+                eprintln!("Error parsing file: {}", e);
+                process::exit(1);
+            }
+        }
+        Err(e) => {
+            eprintln!("Error initializing parser: {}", e);
+            process::exit(1);
+        }
+    }
+
     Ok(())
 }
